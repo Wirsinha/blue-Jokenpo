@@ -1,1 +1,76 @@
-Jokenpo
+console.clear();
+const prompt = require('prompt-sync')();
+
+let vitorias = 0;
+let derrotas = 0;
+let contJogar = 'sim';
+let opcoes =['pedra', 'papel', 'tesoura'];
+
+while(contJogar.toLocaleLowerCase() === 'sim') {
+    let qntRodadas = +prompt('Quantas rodadas vão ser? ');
+    for(let i = 0; i < qntRodadas; i++) {
+        let jogador = +prompt(
+            'Para começar a jogar escolha entre: [0]-Pedra, [1]-Papel, [2]-Tesoura'
+        );
+    }
+
+    jogador = +prompt(
+        'Para começar a jogar escolha entre [0]-Pedra, [1]-Papel, [2]-Tesoura: '
+    )
+    while(jogador != 0 && jogador != 1 && jogador != 2) {
+        console.log('Opcão invalida, por favor insira uma das opções dadas.');
+    }
+
+    let escolhaUser = opcoes[jogador];
+    let randomNumber = Math.trunc(Math.random() * 3);
+    let bot = opcoes[randomNumber];
+    let esocolhaJogadorBot = console.log(
+        `Você escolheu ${escolhaUser}, e o Computador escolheu ${bot}`
+    );
+
+//        VARIAVEIS SE O JOGADOR ESCOLHER PEDRA
+
+    if(jogador == 0 && randomNumber == 1){
+        console.log ('Pedra perde para Papel, BOT ganhou!!');
+        derrotas++
+    } else if(jogador == 0 && randomNumber == 2){
+        console.log('Tesoura perde para Pedra, Você ganhou!!');
+        vitorias++
+    } else if(jogador == 0 && randomNumber == 0){
+        console.log('Os dois escolheram Pedra, Empate!!')
+    }
+
+    // VARIAVEIS SE O JOGADOR ESCOLHER PAPEL
+
+    if(jogador == 1 && randomNumber == 0){
+        console.log('Pedra perde para Papel, Você ganhou!!')
+        vitorias++
+    } else if(jogador == 1 && randomNumber == 2){
+        console.log('Papel perde para Tesoura, BOT ganhou!!')
+        derrotas++
+    }else if(jogador == 1 && randomNumber == 1){
+        console.log('Os dois escolheram Papel, Empate!!')
+    }
+
+    // VARIAVEIS SE O JOGADOR ESCOLHER TESOURA
+
+    if(jogador == 2 && randomNumber == 0){
+        console.log('Tesoura perde para pedra, BOT ganhou!!')
+        vitorias++
+    } else if(jogador == 2 && randomNumber == 1){
+        console.log('Papel perde para Tesoura, Você ganhou!!')
+        derrotas++
+    }else if(jogador == 2 && randomNumber == 2){
+        console.log('Os dois escolheram Tesoura, Empate!!')
+    }
+
+    if (vitorias > derrotas) {
+        console.log("O jogador ganhou!");
+      } else if (derrotas > vitorias) {
+        console.log("O NPC ganhou!");
+      } else {
+        console.log("O Jogador e o NPC empataram!");
+      }
+      contJogar = prompt("Deseja reiniciar o jogo, digite [sim] ou [não]?");
+
+}
